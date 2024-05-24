@@ -1,0 +1,17 @@
+<div class="container">
+  <h2>Liste des créanciers</h2>
+  <div class="form-group">
+    <select class="form-control mt-3">
+      <option>Toutes les catégories</option>
+    </select>
+  </div>
+  <div class="creditors">
+    <div class="creditor" *ngFor="let creditor of creditors">
+      <img [src]="creditor.logo" alt="{{creditor.name}} logo">
+      <h3>{{creditor.name}}</h3>
+      <ul>
+        <li *ngFor="let product of creditor.products">{{product}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

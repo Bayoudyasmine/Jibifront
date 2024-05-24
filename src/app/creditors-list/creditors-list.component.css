@@ -1,0 +1,37 @@
+.container {
+    padding: 20px;
+}
+
+.creditors {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.creditor {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px;
+    margin: 10px;
+    flex: 1 1 calc(33.333% - 20px);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.creditor img {
+    max-width: 100px;
+    margin-bottom: 10px;
+}
+
+.creditor h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.creditor ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.creditor li {
+    margin-bottom: 5px;
+}
