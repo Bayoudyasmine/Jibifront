@@ -8,14 +8,12 @@ import { FormulaireComponent } from './formulaire/formulaire.component';
 import {CreditorsListComponent} from "./creditors-list/creditors-list.component";
 import {HistoryComponent} from "./history/history.component";
 import { MatTabsModule } from '@angular/material/tabs'
-import { HomeComponent } from './home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
     FormulaireComponent,
     CreatePaymentAccountComponent,
-    CreditorsListComponent,
-    HomeComponent
+    CreditorsListComponent
   ],
   imports: [
     BrowserModule,
