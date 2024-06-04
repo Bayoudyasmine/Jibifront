@@ -8,12 +8,17 @@ import { FormulaireComponent } from './formulaire/formulaire.component';
 import {CreditorsListComponent} from "./creditors-list/creditors-list.component";
 import {HistoryComponent} from "./history/history.component";
 import { MatTabsModule } from '@angular/material/tabs'
+import {LoginComponentComponent} from "./login-component/login-component.component";
+import {AgentComponent} from "./agent-component/agent.component";
+import {HttpClient} from "@angular/common/http";
 @NgModule({
   declarations: [
     AppComponent,
     FormulaireComponent,
     CreatePaymentAccountComponent,
-    CreditorsListComponent
+    CreditorsListComponent,
+    LoginComponentComponent,
+    AgentComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +31,7 @@ import { MatTabsModule } from '@angular/material/tabs'
   exports: [
     CreditorsListComponent,
     FormulaireComponent,
-    CreatePaymentAccountComponent
+    CreatePaymentAccountComponent,
 
   ],
   bootstrap: [AppComponent]

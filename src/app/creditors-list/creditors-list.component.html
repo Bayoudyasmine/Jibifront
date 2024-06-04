@@ -1,14 +1,13 @@
-
 <body>
 <h2 class="payment-heading">Paiement de facture</h2>
 <div class="container">
   <div class="onglets">
     <ul class="onglets__nav">
-      <li class="onglets__nav-item" [class.active]="activeTab === 'creditors'">
-        <a [routerLink]="'/creditors-list'" class="onglets__nav-link" (click)="activeTab = 'creditors'">Liste des créanciers</a>
+      <li class="onglets__nav-item">
+        <a [routerLink]="'/creditors-list'" class="onglets__nav-link" [class.active]="activeTab === 'creditors'" (click)="activeTab = 'creditors'">Liste des créanciers</a>
       </li>
-      <li class="onglets__nav-item" [class.active]="activeTab === 'historique'">
-        <a [routerLink]="'/historique'" class="onglets__nav-link" (click)="activeTab = 'historique'">Historique</a>
+      <li class="onglets__nav-item">
+        <a [routerLink]="'/historique'" class="onglets__nav-link" [class.active]="activeTab === 'historique'" (click)="activeTab = 'historique'">Historique</a>
       </li>
     </ul>
   </div>
@@ -17,7 +16,7 @@
     <div id="creditors-list" class="onglets__pane" [class.active]="activeTab === 'creditors'">
       <div class="form-group">
         <select id="categorySelect" class="form-control mt-3" [(ngModel)]="selectedCategory">
-          <option value="Toutes les catégories">  Toutes les catégories</option>
+          <option value="Toutes les catégories">Toutes les catégories</option>
           <option *ngFor="let category of allCategories" [value]="category">{{ category }}</option>
         </select>
       </div>
