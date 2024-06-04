@@ -30,6 +30,7 @@ body {
   color: #808080;
   border-color: #808080;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 #categorySelect option {
@@ -41,7 +42,6 @@ body {
 .onglets {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #ddd;
 }
 
 .onglets__nav {
@@ -62,10 +62,12 @@ body {
   color: #333;
   border: 1px solid transparent;
   border-bottom: 4px solid transparent;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .onglets__nav-link.active {
   background-color: #fff;
+  color: #333; /* Couleur du texte en blanc */
   border-left: 1px solid #ddd;
   border-right: 1px solid #ddd;
   border-bottom: none; /* Supprimer la bordure inférieure pour fusionner avec le conteneur */
@@ -74,6 +76,7 @@ body {
 
 .onglets__nav-link:not(.active) {
   background-color: #f0f0f0;
+  color: #808080; /* Couleur du texte en gris */
   border-color: #ddd;
 }
 
