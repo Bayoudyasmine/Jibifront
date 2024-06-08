@@ -7,7 +7,6 @@ import { HistoryComponent } from './history/history.component';
 import {FormulaireComponent } from './formulaire/formulaire.component';
 import { CreatePaymentAccountComponent } from './create-payment-account/create-payment-account.component';
 import {LoginComponentComponent} from "./login-component/login-component.component";
-import {AgentComponent} from "./agent-component/agent.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -16,7 +15,6 @@ const routes: Routes = [
   {path : 'formulaire', component: FormulaireComponent },
   {path : 'create-payment-account', component: CreatePaymentAccountComponent },
   {path : 'login', component: LoginComponentComponent },
-  {path : 'agent-page', component: AgentComponent }
 
 ];
 

@@ -3,10 +3,10 @@
     <h3>CONNECTEZ-VOUS</h3>
   <div class="form-wrapper">
     <div class="form-container">
-      <form>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <label for="nom">Email</label>
-          <input id="nom" type="text" formControlName="nom" class="form-control">
+          <label for="email">Email</label>
+          <input id="email" type="text" formControlName="email" class="form-control">
         </div>
         <div class="form-group">
           <label for="password">Password</label>

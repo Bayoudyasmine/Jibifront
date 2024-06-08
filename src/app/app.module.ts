@@ -9,8 +9,7 @@ import {CreditorsListComponent} from "./creditors-list/creditors-list.component"
 import {HistoryComponent} from "./history/history.component";
 import { MatTabsModule } from '@angular/material/tabs'
 import {LoginComponentComponent} from "./login-component/login-component.component";
-import {AgentComponent} from "./agent-component/agent.component";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,14 +17,14 @@ import {HttpClient} from "@angular/common/http";
     CreatePaymentAccountComponent,
     CreditorsListComponent,
     LoginComponentComponent,
-    AgentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     MatTabsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   exports: [
