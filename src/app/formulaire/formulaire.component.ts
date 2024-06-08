@@ -33,7 +33,49 @@ export class FormulaireComponent implements OnInit {
 
   onSubmit(): void {
     if (this.formulaire.valid) {
-      console.log(this.formulaire.value);
+      const formData = new FormData();
+      // @ts-ignore
+      formData.append('nom', this.formulaire.get('nom').value);
+      // @ts-ignore
+      formData.append('prenom', this.formulaire.get('prenom').value);
+      // @ts-ignore
+      formData.append('pieceIdentite', this.formulaire.get('pieceIdentite').value);
+      // @ts-ignore
+      formData.append('numeroPieceIdentite', this.formulaire.get('numeroPieceIdentite').value);
+      // @ts-ignore
+      formData.append('dateNaissance', this.formulaire.get('dateNaissance').value);
+      // @ts-ignore
+      formData.append('adresse', this.formulaire.get('adresse').value);
+      // @ts-ignore
+      formData.append('email', this.formulaire.get('email').value);
+      // @ts-ignore
+      formData.append('confirmationEmail', this.formulaire.get('confirmationEmail').value);
+      // @ts-ignore
+      formData.append('numeroTelephone', this.formulaire.get('numeroTelephone').value);
+      // @ts-ignore
+      formData.append('numeroImmatriculation', this.formulaire.get('numeroImmatriculation').value);
+      // @ts-ignore
+      formData.append('numeroPatente', this.formulaire.get('numeroPatente').value);
+      // @ts-ignore
+      formData.append('description', this.formulaire.get('piecesJointes').get('description').value);
+      // @ts-ignore
+      formData.append('fichier', this.formulaire.get('piecesJointes').get('fichier').value);
+
+      // this.agentService.saveFormData(formData).subscribe(
+      //   response => {
+      //     console.log('Données envoyées avec succès', response);
+      //   },
+      //   error => {
+      //     console.error('Erreur lors de l\'envoi des données', error);
+      //   }
+      // );
+      console.log("Form Data:");
+      const formDataObject = {};
+      formData.forEach((value, key) => {
+        // @ts-ignore
+        formDataObject[key] = value;
+      });
+      console.log(formDataObject);
     } else {
       console.error('Formulaire invalide');
     }
