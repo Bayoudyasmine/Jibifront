@@ -49,6 +49,22 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "fr": {
+              "localize": ["fr"],
+              "outputPath": "dist/appfront-fr",
+              "i18nFile": "src/locale/messages.fr.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "fr",
+              "aot": true
+            },
+            "en": {
+              "localize": ["en"],
+              "outputPath": "dist/appfront-en",
+              "i18nFile": "src/locale/messages.en.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "en",
+              "aot": true
             }
           },
           "defaultConfiguration": "production"
@@ -61,6 +77,12 @@
             },
             "development": {
               "buildTarget": "APPfront:build:development"
+            },
+            "fr": {
+              "browserTarget": "APPfront:build:fr"
+            },
+            "en": {
+              "browserTarget": "APPfront:build:en"
             }
           },
           "defaultConfiguration": "development"
@@ -68,7 +90,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "APPfront:build"
+            "browserTarget": "APPfront:build"
           }
         },
         "test": {
@@ -84,6 +106,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -96,3 +119,4 @@
     "analytics": false
   }
 }
+
