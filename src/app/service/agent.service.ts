@@ -17,4 +17,11 @@ export class AgentService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<ClientDTO[]>(this.apiUrl, { headers });
   }
+
+  subscribeAgent(formData: FormData): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.post<any>("http://localhost:8080/api/agents", formData, { headers });
+  }
 }

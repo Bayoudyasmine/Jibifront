@@ -30,7 +30,7 @@ export class LoginComponentComponent implements OnInit {
   onSubmit(): void {
     console.log(this.email + this.password);
     let body = this.loginForm.value
-    console.log("Le body hhhhhhhhhhh",body)
+    //console.log("Le body hhhhhhhhhhh",body)
     this.loginService.login(body.email, body.password).subscribe(
       token => {
         // Redirect to the desired page after successful login
