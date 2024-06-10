@@ -1,0 +1,58 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from '../service/login.service';
+import { Router } from '@angular/router';
+import { MatDialogRef } from '@angular/material/dialog';
+
+@Component({
+    selector: 'app-login-component',
+    templateUrl: './login-component.component.html',
+    styleUrls: ['./login-component.component.css']
+})
+export class LoginComponentComponent implements OnInit {
+    loginForm!: FormGroup;
+    errorMessage: string = '';
+
+    constructor(
+        private router: Router,
+        private formBuilder: FormBuilder,
+        private loginService: LoginService,
+        public dialogRef: MatDialogRef<LoginComponentComponent> // <-- Add this line
+    ) { }
+
+    ngOnInit(): void {
+        this.loginForm = this.formBuilder.group({
+            email: ['', [Validators.required, Validators.email]],
+            password: ['', [Validators.required, Validators.minLength(5)]]
+        });
+    }
+
+    onSubmit(): void {
+        if (this.loginForm.valid) {
+            const { email, password } = this.loginForm.value;
+            this.loginService.login(email, password).subscribe(
+                (response: any) => {
+                    const role = localStorage.getItem('role');
+                    this.dialogRef.close(); // <-- Close the dialog on successful login
+                    if (role === 'ROLE_AGENT') {
+                        this.router.navigate(['/agent-page']);
+                    } else if (role === 'ROLE_CLIENT') {
+                        this.router.navigate(['/dashboard-client']);
+                    } else if (role === 'ROLE_ADMIN') {
+                        this.router.navigate(['/formulaire']);
+                    } else {
+                        this.errorMessage = 'Rôle inconnu reçu du serveur';
+                    }
+                },
+                error => {
+                    this.errorMessage = 'Échec de la connexion. Veuillez vérifier votre email et votre mot de passe.';
+                }
+            );
+        } else {
+            this.errorMessage = 'Veuillez entrer une adresse email et un mot de passe valides.';
+        }
+    }
+    closeDialog(): void {
+        this.dialogRef.close();
+    }
+}

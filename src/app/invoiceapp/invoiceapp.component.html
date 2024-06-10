@@ -1,0 +1,50 @@
+<div class="invoice-container">
+    <h1>Paiment de facture</h1>
+    <div class="invoice-section">
+        <h2>Paiment par référence</h2>
+        <div class="details">
+            <img src="assets/images/alcs.png" alt="alcs">
+            <!-- Aligning all items in a single line -->
+            <div class="info-block">
+                <p><strong>Créance:</strong> SIDACTION</p>
+            </div>
+            <div class="info-block">
+                <p><strong>Donateur:</strong> ANAS</p>
+            </div>
+            <div class="info-block">
+                <p><strong>Créancier:</strong> ALCS</p>
+            </div>
+            <div class="info-block">
+                <p><strong>Date de création:</strong> 23-12-2020</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="summary-section">
+        <h2>Récapitulatif des informations saisies</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Réference</th>
+                <th>Description</th>
+                <th>Prix TTC</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>100001192072</td>
+                <td>Don Sidaction</td>
+                <td>10 DH</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="total">
+            <p><strong>Total</strong><br>10 DH</p>
+        </div>
+    </div>
+
+    <div class="actions">
+        <button (click)="cancelTransaction()">Abondonner la transaction <span class="check-symbol">&#10007;</span></button>
+        <button (click)="confirmTransaction()">Confirmer et Signer <span class="check-symbol">&#10003;</span></button>
+    </div>
+</div>
