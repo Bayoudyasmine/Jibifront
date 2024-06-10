@@ -34,7 +34,7 @@ export class LoginComponentComponent implements OnInit {
           const role = localStorage.getItem('role')
           const firstlogin = localStorage.getItem('firstlogin')
 
-          console.log({ email, password });
+          console.log({ email, password }, "firstlogin hhhhhhh  " + firstlogin);
 
           if (role === 'ROLE_AGENT') {
             if( firstlogin === 'true'){
@@ -44,8 +44,9 @@ export class LoginComponentComponent implements OnInit {
           }else if (role === 'ROLE_CLIENT') {
             if(firstlogin === 'true'){
               this.router.navigate(['/firstlogin']);
+              return; // Ajoutez cette ligne pour arrêter l'exécution
             }
-            this.router.navigate(['/agent-page']);
+            // this.router.navigate(['/agent-page']);
           } else if (role === 'ROLE_ADMIN') {
             this.router.navigate(['/formulaire']);
           } else {

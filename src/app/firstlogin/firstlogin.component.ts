@@ -42,15 +42,31 @@ export class FirstLoginComponent implements OnInit {
     formData.append('newPassword', this.firstLoginForm.value.newPassword);
     formData.append('confirmPassword', this.firstLoginForm.value.confirmPassword);
     console.log(formData.get('email') + "hh")
-    this.passwordService.changeAgentPassword(formData).subscribe(
-      (response) => {
-        console.log('Mot de passe changé avec succès', response);
-        this.router.navigate(['/agent-page']);
-      },
-      (error) => {
-        console.error('Erreur lors du changement de mot de passe', error);
-        // Gérer les erreurs ici
-      }
-    );
-  }
+    if (localStorage.getItem("role") === 'ROLE_AGENT') {
+      this.passwordService.changeAgentPassword(formData).subscribe(
+        (response) => {
+          console.log('Mot de passe changé avec succès', response);
+          this.router.navigate(['/agent-page']);
+        },
+        (error) => {
+          console.error('Erreur lors du changement de mot de passe', error);
+          // Gérer les erreurs ici
+        }
+      );
+    } else {
+      this.passwordService.changeClientPassword(formData).subscribe(
+        (response) => {
+          console.log('Mot de passe changé avec succès', response);
+          //this.router.navigate(['/agent-page']);
+        },
+        (error) => {
+          console.error('Erreur lors du changement de mot de passe', error);
+          // Gérer les erreurs ici
+        }
+      );
+    }
+
+
 }
+}
+
