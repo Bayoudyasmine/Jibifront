@@ -1,6 +1,7 @@
 // create-payment-account.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {ClientService} from "../service/client.service";
 
 @Component({
   selector: 'app-create-payment-account',
@@ -13,13 +14,14 @@ export class CreatePaymentAccountComponent implements OnInit {
   cinRectoFile: File | null = null;
   cinVersoFile: File | null = null;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private clientService:ClientService) {
     this.clientInfoForm = this.fb.group({
       product: ['COMPTE_200', Validators.required], // Set default value to 'hssab1'
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
       telephone: ['', [Validators.required, Validators.pattern('^\\+212[6-7][0-9]{8}$')]],
       email: ['', [Validators.required, Validators.email]]
+
     });
   }
 
@@ -32,6 +34,7 @@ export class CreatePaymentAccountComponent implements OnInit {
   }
 
   onSubmit(): void {
+    console.log("m here");
     if (this.clientInfoForm.valid && this.cinRectoFile && this.cinVersoFile) {
       const formData = new FormData();
       formData.append('account_type', this.clientInfoForm.get('product')?.value);
@@ -41,6 +44,16 @@ export class CreatePaymentAccountComponent implements OnInit {
       formData.append('email', this.clientInfoForm.get('email')?.value);
       formData.append('cinRectoPath', this.cinRectoFile);
       formData.append('cinVersoPath', this.cinVersoFile);
+      console.log(formData.get('email'));
+      this.clientService.createClient(formData).subscribe(
+        response => {
+          console.log('Données envoyées avec succès', response);
+        },
+        error => {
+          console.error('Erreur lors de l\'envoi des données', error);
+        }
+      );
+
 
       // Call your service method to handle the form submission
       // this.agentService.createClient(formData).subscribe(

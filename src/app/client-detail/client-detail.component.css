@@ -16,3 +16,9 @@
 .close-button {
   margin-top: 20px;
 }
+.cin-image {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}

@@ -1,23 +1,31 @@
 <div class="container">
   <h2>Liste des Clients</h2>
-  <div class="table-controls">
-    <button (click)="addClient()" class="add-button">Ajouter un client</button>
+
+  <!-- Barre de recherche -->
+  <div class="search-container">
+    <input type="text" placeholder="Rechercher par email..." [(ngModel)]="searchEmail" (input)="filterClients()" />
   </div>
+  <div class="table-controls">
+    <button (click)="addClient()" class="add-button">Ajouter un Client</button>
+  </div>
+  <!-- Tableau des clients -->
   <table class="clients-table">
     <thead>
     <tr>
       <th>ID</th>
       <th>Nom</th>
       <th>Prénom</th>
+      <th>Email</th>
       <th>Produit</th>
       <th>Actions</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let client of clients">
+    <tr *ngFor="let client of filteredClients">
       <td>{{ client.id }}</td>
       <td>{{ client.lastname }}</td>
       <td>{{ client.firstname }}</td>
+      <td>{{ client.email }}</td>
       <td></td>
       <td>
         <button (click)="viewDetails(client)" class="view-button">
@@ -31,9 +39,7 @@
     </tbody>
   </table>
 
-  <!-- Overlay -->
+  <!-- Overlay et détails du client -->
   <div class="overlay" [class.show-overlay]="shouldShowOverlay()"></div>
-
-  <!-- Composant de détails du client -->
   <app-client-detail *ngIf="selectedClient" [client]="selectedClient" (close)="closeDetails()"></app-client-detail>
 </div>

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminService } from '../service/admin.service';
+import { AgentService } from '../service/agent.service';
 import { Agent } from '../model/agent.model';
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
+import {AdminService} from "../service/admin.service";
 
 @Component({
   selector: 'app-admin',
@@ -10,9 +11,11 @@ import {Router} from "@angular/router";
 })
 export class AdminComponent implements OnInit {
   agents: Agent[] = [];
+  filteredAgents: Agent[] = []; // Agents filtrés par recherche
   selectedAgent: Agent | null = null;
+  searchCIN: string = ''; // Valeur de recherche par numéro de CIN
 
-  constructor(private adminService: AdminService, private router: Router) { }
+  constructor(private agentService: AgentService, private adminService : AdminService,  private router: Router) { }
 
   ngOnInit(): void {
     this.getAgents();
@@ -22,6 +25,7 @@ export class AdminComponent implements OnInit {
     this.adminService.getAgents().subscribe(
       (data: Agent[]) => {
         this.agents = data;
+        this.filteredAgents = [...this.agents]; // Initialiser les agents filtrés
       },
       error => {
         console.error('Error fetching agents', error);
@@ -29,9 +33,16 @@ export class AdminComponent implements OnInit {
     );
   }
 
+  // Filtrer les agents en fonction du numéro de CIN saisi en temps réel
+  filterAgents(): void {
+    this.filteredAgents = this.agents.filter(agent =>
+      agent.numCin.toLowerCase().includes(this.searchCIN.toLowerCase())
+    );
+  }
+
   addAgent(): void {
-      this.router.navigate(['/formulaire']);
-    }
+    this.router.navigate(['/formulaire']);
+  }
 
   deleteAgent(id: number | undefined): void {
     this.agents = this.agents.filter(agent => agent.id !== id);

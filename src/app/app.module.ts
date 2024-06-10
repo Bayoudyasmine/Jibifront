@@ -15,6 +15,8 @@ import {PhonePrefixDirective} from "./formulaire/phonePrefixDirective";
 import {ClientDetailComponent} from "./client-detail/client-detail.component";
 import {AdminComponent} from "./admin/admin.component";
 import {AgentDetailComponent} from "./agent-detail/agent-detail.component";
+import {DashboardComponent} from "./dashboard/dashboard.component";
+import {FirstLoginComponent} from "./firstlogin/firstlogin.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,9 @@ import {AgentDetailComponent} from "./agent-detail/agent-detail.component";
     ClientDetailComponent,
     CreatePaymentAccountComponent,
     AdminComponent,
-    AgentDetailComponent
+    AgentDetailComponent,
+    DashboardComponent,
+    FirstLoginComponent
   ],
   imports: [
     BrowserModule,

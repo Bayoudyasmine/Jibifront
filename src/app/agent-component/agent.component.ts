@@ -13,6 +13,8 @@ export class AgentComponent implements OnInit {
   clients: ClientDTO[] = [];
   showCreatePaymentAccount: boolean = false;
   selectedClient: ClientDTO | null = null;
+  filteredClients: ClientDTO[] = []; // Clients filtrés par recherche
+  searchEmail: string = ''; // Valeur de recherche par email
 
   constructor(private agentService: AgentService, private router: Router) { }
 
@@ -24,6 +26,7 @@ export class AgentComponent implements OnInit {
     this.agentService.getClients().subscribe(
       (data: ClientDTO[]) => {
         this.clients = data;
+        this.filteredClients = [...this.clients]; // Initialiser les clients filtrés
       },
       error => {
         console.error('Error fetching clients', error);
@@ -31,6 +34,11 @@ export class AgentComponent implements OnInit {
     );
   }
 
+  filterClients(): void {
+    this.filteredClients = this.clients.filter(client =>
+      client.email.toLowerCase().includes(this.searchEmail.toLowerCase())
+    );
+  }
   addClient(): void {
     this.router.navigate(['/create-payment-account']);
   }

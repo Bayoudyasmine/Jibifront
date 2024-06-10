@@ -28,14 +28,24 @@ export class LoginComponentComponent implements OnInit {
   onSubmit(): void {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
+      console.log({ email, password });
       this.loginService.login(email, password).subscribe(
         (response: any) => {
           const role = localStorage.getItem('role')
+          const firstlogin = localStorage.getItem('firstlogin')
+
+          console.log({ email, password });
 
           if (role === 'ROLE_AGENT') {
+            if( firstlogin === 'true'){
+              this.router.navigate(['/firstlogin']);
+            }
+            else this.router.navigate(['/agent-page']);
+          }else if (role === 'ROLE_CLIENT') {
+            if(firstlogin === 'true'){
+              this.router.navigate(['/firstlogin']);
+            }
             this.router.navigate(['/agent-page']);
-          } else if (role === 'ROLE_CLIENT') {
-            this.router.navigate(['/dashboard-client']);
           } else if (role === 'ROLE_ADMIN') {
             this.router.navigate(['/formulaire']);
           } else {

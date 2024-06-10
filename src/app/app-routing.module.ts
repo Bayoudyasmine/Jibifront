@@ -9,6 +9,8 @@ import { CreatePaymentAccountComponent } from './create-payment-account/create-p
 import {LoginComponentComponent} from "./login-component/login-component.component";
 import {AgentComponent} from "./agent-component/agent.component";
 import {AdminComponent} from "./admin/admin.component";
+import {DashboardComponent} from "./dashboard/dashboard.component";
+import {FirstLoginComponent} from "./firstlogin/firstlogin.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -18,7 +20,9 @@ const routes: Routes = [
   {path : 'create-payment-account', component: CreatePaymentAccountComponent },
   {path : 'login', component: LoginComponentComponent },
   {path : 'agent-page', component: AgentComponent },
-  {path : 'admin-page', component: AdminComponent }
+  {path : 'admin-page', component: DashboardComponent },
+  {path : 'firstlogin', component: FirstLoginComponent }
+
 
 ];
 

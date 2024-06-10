@@ -21,6 +21,7 @@ export class AdminService {
     return this.http.get<Agent[]>(`${this.apiUrl}`, { headers });
   }
 
+
   deleteAgent(id: number | undefined) {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
