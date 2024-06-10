@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponentComponent } from '../login-component/login-component.component';
 
 @Component({
     selector: 'app-home',
@@ -7,9 +8,41 @@ import { Router } from '@angular/router';
     styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-    constructor(private router: Router) {}
+    loginDialogDisplayed: boolean = false; // Variable de statut
+    errorMessage: any;
+    loginForm: any;
+    blurBackground: boolean = false; // Ajout de la variable pour contrôler le flou de l'arrière-plan
 
-    navigateToLogin() {
-        this.router.navigate(['/login']);
+    constructor(public dialog: MatDialog) { }
+
+    openLoginDialog(): void {
+        if (!this.loginDialogDisplayed) {
+            const dialogRef = this.dialog.open(LoginComponentComponent, {
+                width: '250px',
+            });
+
+            dialogRef.afterOpened().subscribe(() => {
+                this.addBlurBackground(); // Ajouter la classe pour flouter l'arrière-plan
+            });
+
+            dialogRef.afterClosed().subscribe(result => {
+                console.log('The dialog was closed');
+                this.removeBlurBackground(); // Supprimer la classe pour enlever le flou de l'arrière-plan
+            });
+
+            this.loginDialogDisplayed = true;
+        }
+    }
+
+    addBlurBackground(): void {
+        this.blurBackground = true;
+    }
+
+    removeBlurBackground(): void {
+        this.blurBackground = false;
+    }
+
+    onSubmit() {
+
     }
 }

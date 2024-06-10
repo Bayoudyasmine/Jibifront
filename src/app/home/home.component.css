@@ -83,6 +83,7 @@
 .features {
   padding: 50px 20px;
   text-align: center;
+  padding-bottom: 80px;
 }
 
 .features h2 {
@@ -100,11 +101,13 @@
   font-style:italic ;
   font-family: "Arial serif";
   margin-top: 20px;
+  padding-top:30px ;
 }
 
 .features p {
   font-size: 18px;
   margin-bottom: 40px;
+
 }
 
 .feature-list {
@@ -175,7 +178,7 @@
 }
 
 .card {
-  padding: 5px;
+
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
@@ -209,7 +212,12 @@
   font-weight: bold;
   margin-bottom: 20px;
 }
-
+.factures{
+  margin-right: 80px;
+}
+.virement{
+  margin-left: 80px;
+}
 /* Style de la section Factures */
 .factures h2 {
   font-size: 24px;
@@ -219,18 +227,20 @@
 }
 
 /* Style des paragraphes */
-.virement p{
+.virement p {
   font-size: 18px;
-  margin-bottom: 80px;
-
-
+  margin-bottom: 80px; /* Ajustez cette valeur selon vos besoins */
+  margin-top: -50px; /* Ajustez cette valeur selon vos besoins */
 }
+
 .factures p {
   font-size: 18px;
-  margin-bottom: 80px;
-  text-align: left;
+  margin-bottom: 80px; /* Ajustez cette valeur selon vos besoins */
+  margin-top: -50px; /* Ajustez cette valeur selon vos besoins */
 
 }
+
+
 .flip-card {
   background-color: transparent;
   width: 240px;
@@ -240,6 +250,7 @@
   font-weight:bold;
   color: black;
   margin-bottom: 100px;
+  margin-right: 60px;
 }
 
 .heading_8264 {
@@ -390,65 +401,5 @@
   margin-bottom: 10px;
 
 }
-/* Styles for the footer */
-/* Style du footer */
-.footer {
-  background-color: #127957; background-size: cover;
-  padding:5px;
-}
 
-.footer h5 {
-  color: #ffa621;
-}
 
-.footer p {
-  color: #ffffff;
-}
-
-.footer ul.social-links {
-  list-style: none;
-  padding: 0;
-}
-
-.footer ul.social-links li {
-  display: inline-block;
-  margin-right: 10px;
-}
-
-.footer ul.social-links li a {
-  color: #ffffff;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer ul.social-links li a:hover {
-  color: #ffa621;
-}
-
-.footer .copyright {
-  color: #ffffff;
-  margin-top: 20px;
-}
-
-/* Animation pour les liens sociaux */
-.footer ul.social-links li {
-  position: relative;
-}
-
-.footer ul.social-links li::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  bottom: -5px;
-  left: 0;
-  background-color: #ffa621;
-  visibility: hidden;
-  transform: scaleX(0);
- transition: all 0.3s ease-in-out 0s;
-}
-
-.footer ul.social-links li:hover::after {
-  visibility: visible;
-  transform: scaleX(1);
-}

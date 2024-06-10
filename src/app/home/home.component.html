@@ -1,18 +1,21 @@
+
 <div class="home">
-  <app-navbar></app-navbar>
+
   <div class="content">
     <div class="banner">
       <img src="assets/images/jibi.png" alt="Banner">
       <!-- Bouton superposé à l'image -->
-      <button class="cta">
-        <span>Get Started!</span>
-        <svg width="15px" height="10px" viewBox="0 0 13 10">
-          <path d="M1,5 L11,5"></path>
-          <polyline points="8 1 12 5 8 9"></polyline>
-        </svg>
-      </button>
+        <button class="cta" (click)="openLoginDialog()">
+            <span>Accéder à mon JiBi</span>
+            <svg width="15px" height="10px" viewBox="0 0 13 10">
+                <path d="M1,5 L11,5"></path>
+                <polyline points="8 1 12 5 8 9"></polyline>
+            </svg>
+        </button>
+
     </div>
-    <div class="features">
+      <div id="Avantages" class="feature-section ptb-50">
+      <div class="features">
       <h2>Votre application Jibi</h2>
       <p>Vous permet de gérer vos comptes en toute sécurité, 24h/24 et 7j/7.</p>
       <div class="feature-list">
@@ -33,6 +36,8 @@
         </div>
       </div>
     </div>
+      </div>
+      <div id="fonctionnalites" class="feature-section ptb-50">
     <!--features section start-->
     <div id="features" class="feature-section ptb-50">
       <div class="container">
@@ -181,51 +186,14 @@
 
           </div>
         </div>
+
         <!--feature new style end-->
       </div>
     </div>
+      </div>
     <!--features section end-->
 
-  </div>
-  <footer class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <h5>Contactez-nous</h5>
-          <p>Email: info&#64;jibi.com</p>
-          <p>Téléphone: +123456789</p>
-          <p>Adresse: [Votre adresse physique]</p>
-          <p>Heures d'ouverture: [Heures d'ouverture du support client]</p>
-        </div>
-        <div class="col-md-4">
-          <h5>À propos de nous</h5>
-          <p>Nous sommes une entreprise leader dans la fourniture des meilleurs services financiers. Notre mission est de rendre la gestion financière facile et accessible pour tous.</p>
-        </div>
-        <div class="col-md-4">
-          <h5>Suivez-nous</h5>
-          <ul class="social-links">
-            <li><a href="#">Facebook</a></li>
-            <li><a href="#">Twitter</a></li>
-            <li><a href="#">LinkedIn</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="row mt-4">
-        <div class="col-md-6">
-          <h5>Liens rapides</h5>
-          <ul class="quick-links">
-            <li><a href="#">Accueil</a></li>
-            <li><a href="#">À propos</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </div>
-        <div class="col-md-6 text-right">
-          <p>&copy; 2024 Jibi. Tous droits réservés.</p>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-
 </div>
+</div>
+
+

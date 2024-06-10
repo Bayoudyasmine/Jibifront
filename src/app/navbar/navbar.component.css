@@ -11,8 +11,9 @@ nav a {
   color: white;
   text-decoration: none;
   font-size: 18px ;
-  padding: 8px;
+  padding: 2px;
   transition: color 0.3s ease;
+  font-weight: bold;
 }
 
 nav a:hover {

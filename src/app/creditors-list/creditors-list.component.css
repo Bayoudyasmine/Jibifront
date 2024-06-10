@@ -12,31 +12,33 @@ body {
   padding: 20px;
   margin: 20px auto;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgb(255, 166, 33);
   max-width: 1200px;
 }
 
 /* Onglets styles */
 .payment-heading {
-  font-family: Arial;
+  font-family: Arial sans-serif;
   font-size: 25px;
-  color: #808080;
+  color: #000000;
+  margin-top: 10px;
+  margin-left: 60px;
 }
 
 #categorySelect {
   width: 100%;
-  font-family: Arial;
+  font-family: Arial sans-serif;
   font-size: 18px;
-  color: #808080;
-  border-color: #808080;
+  color: #000000;
+  border-color: #127957;
   margin-bottom: 20px;
   margin-top: 20px;
 }
 
 #categorySelect option {
-  font-family: Arial;
+  font-family: Arial sans-serif;
   font-size: 16px;
-  color: #808080;
+  color: #000000;
 }
 
 .onglets {
@@ -68,10 +70,10 @@ body {
 .onglets__nav-link.active {
   background-color: #fff;
   color: #333; /* Couleur du texte en blanc */
-  border-left: 1px solid #ddd;
-  border-right: 1px solid #ddd;
+  border-left: 1px solid #127957;
+  border-right: 1px solid #127957;
   border-bottom: none; /* Supprimer la bordure inférieure pour fusionner avec le conteneur */
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #127957;
 }
 
 .onglets__nav-link:not(.active) {
@@ -109,9 +111,9 @@ body {
 .creditor {
   flex: 1;
   margin-right: 20px;
-  border: 1px solid #ddd;
+  border: 1px solid #000000;
   padding: 10px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 5px rgb(255, 166, 33);
   display: flex;
   transition: border-color 0.3s;
   height: 200px; /* Hauteur fixe pour toutes les boîtes de créanciers */
@@ -122,7 +124,8 @@ body {
 }
 
 .creditor:hover {
-  border-color: #888;
+  border-color: #127957 ;
+
 }
 
 .creditor-logo {
@@ -139,8 +142,10 @@ body {
 
 .creditor-products {
   width: 60%;
-  padding-left: 10px;
-  border-left: 1px solid #ddd; /* Ligne grise entre le logo et les produits */
+  padding-left: 12px;
+  border-left: 1px solid #127957; /* Ligne grise entre le logo et les produits */
+  color: #000000;
+  font-family: Arial sans-serif;
 }
 
 .creditor-products label {
@@ -148,8 +153,10 @@ body {
   margin-bottom: 20px;
   margin-top: 20px;
   font-size: 20px;
-  font-family: "Arial";
-  color: #808080;
+  font-family: "Arial sans serif";
+  font-weight:bold;
+  color: #127957;
+
 }
 
 .creditor-products ul {
