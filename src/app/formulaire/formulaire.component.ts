@@ -80,7 +80,7 @@ export class FormulaireComponent implements OnInit {
       this.agentService.subscribeAgent(formData).subscribe(
         response => {
           console.log('Données envoyées avec succès', response);
-          this.router.navigate(['/creditors-list']);
+          // this.router.navigate(['/creditors-list']);
         },
         error => {
           console.error('Erreur lors de l\'envoi des données', error);

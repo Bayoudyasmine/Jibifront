@@ -1,6 +1,9 @@
 // create-payment-account.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {AgentService} from "../service/agent.service";
+import {ClientService} from "../service/client.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-payment-account',
@@ -13,7 +16,7 @@ export class CreatePaymentAccountComponent implements OnInit {
   cinRectoFile: File | null = null;
   cinVersoFile: File | null = null;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private clientService:ClientService,private router:Router) {
     this.clientInfoForm = this.fb.group({
       product: ['COMPTE_200', Validators.required], // Set default value to 'hssab1'
       nom: ['', Validators.required],
@@ -41,16 +44,18 @@ export class CreatePaymentAccountComponent implements OnInit {
       formData.append('email', this.clientInfoForm.get('email')?.value);
       formData.append('cinRectoPath', this.cinRectoFile);
       formData.append('cinVersoPath', this.cinVersoFile);
-
+      console.log("Form data ", formData.get("firstname"));
       // Call your service method to handle the form submission
-      // this.agentService.createClient(formData).subscribe(
-      //   response => {
-      //     // Handle successful response
-      //   },
-      //   error => {
-      //     // Handle error response
-      //   }
-      // );
+      this.clientService.subscribeClient(formData).subscribe(
+        response => {
+          // Handle successful response
+          console.log("All is well");
+          this.router.navigate(['/agent-page']);
+        },
+        error => {
+          // Handle error response
+        }
+      );
     } else {
       // Handle invalid form or missing files
     }
