@@ -1,6 +1,7 @@
-// create-payment-account.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {AgentService} from "../service/agent.service";
+import {ClientService} from "../service/client.service";
 
 @Component({
   selector: 'app-create-payment-account',
@@ -13,22 +14,22 @@ export class CreatePaymentAccountComponent implements OnInit {
   cinRectoFile: File | null = null;
   cinVersoFile: File | null = null;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder , private clientService:ClientService) {
     this.clientInfoForm = this.fb.group({
-      product: ['COMPTE_200', Validators.required], // Set default value to 'hssab1'
+      product: ['COMPTE_200', Validators.required],
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
-      telephone: ['', [Validators.required, Validators.pattern('^\\+212[6-7][0-9]{8}$')]],
-      email: ['', [Validators.required, Validators.email]]
+      telephone: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      cinRecto: [null, Validators.required],
+      cinVerso: [null, Validators.required]
     });
   }
 
   ngOnInit(): void {}
 
   nextPage(): void {
-    if (this.currentPage === 1) {
-        this.currentPage = 2;
-    }
+      this.currentPage = 2;
   }
 
   onSubmit(): void {
@@ -42,27 +43,39 @@ export class CreatePaymentAccountComponent implements OnInit {
       formData.append('cinRectoPath', this.cinRectoFile);
       formData.append('cinVersoPath', this.cinVersoFile);
 
-      // Call your service method to handle the form submission
-      // this.agentService.createClient(formData).subscribe(
-      //   response => {
-      //     // Handle successful response
-      //   },
-      //   error => {
-      //     // Handle error response
-      //   }
-      // );
+      // Log the formData to see if files are correctly appended
+      //for (let key of formData.keys()) {
+        console.log(formData.get("cinRectoPath"));
+      //}
+
+   //   Call your service method to handle the form submission
+      this.clientService.subscribeClient(formData).subscribe(
+        response => {
+          // Handle successful response
+          console.log(response)
+        },
+        error => {
+          // Handle error response
+          console.error(error)
+        }
+      );
     } else {
-      // Handle invalid form or missing files
+      console.log('Form is invalid or files are missing');
     }
   }
 
   onFileChange(event: Event, side: 'cinRecto' | 'cinVerso'): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
+      const file = input.files[0];
       if (side === 'cinRecto') {
-        this.cinRectoFile = input.files[0];
+        this.cinRectoFile = file;
+        this.clientInfoForm.patchValue({ cinRecto: file });
+        console.log('cinRectoFile set:', this.cinRectoFile);
       } else if (side === 'cinVerso') {
-        this.cinVersoFile = input.files[0];
+        this.cinVersoFile = file;
+        this.clientInfoForm.patchValue({ cinVerso: file });
+        console.log('cinVersoFile set:', this.cinVersoFile);
       }
     }
   }

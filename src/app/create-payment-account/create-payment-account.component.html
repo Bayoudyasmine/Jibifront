@@ -1,11 +1,12 @@
 <div class="container">
   <h2>Ouverture d'un compte de paiement</h2>
 
-  <!-- Premier formulaire: Informations client -->
-  <div *ngIf="currentPage === 1">
-    <div class="form-wrapper">
-      <div class="form-container">
-        <form [formGroup]="clientInfoForm" (ngSubmit)="nextPage()">
+  <!-- Formulaire combiné -->
+  <div class="form-wrapper">
+    <div class="form-container">
+      <form [formGroup]="clientInfoForm" (ngSubmit)="onSubmit()">
+        <!-- Première étape: Informations client -->
+        <div *ngIf="currentPage === 1">
           <div class="form-group">
             <label for="product">Sélectionner un produit</label>
             <select id="product" formControlName="product" class="form-control">
@@ -38,18 +39,12 @@
             </div>
           </div>
           <div class="btn-container">
-            <button type="submit" class="btn btn-primary">Suivant</button>
+            <button type="button" class="btn btn-primary" (click)="nextPage()">Suivant</button>
           </div>
-        </form>
-      </div>
-    </div>
-  </div>
+        </div>
 
-  <!-- Deuxième formulaire: Téléchargement de la carte d'identité -->
-  <div *ngIf="currentPage === 2">
-    <div class="form-wrapper">
-      <div class="form-container">
-        <form (ngSubmit)="onSubmit()">
+        <!-- Deuxième étape: Téléchargement de la carte d'identité -->
+        <div *ngIf="currentPage === 2">
           <div class="form-group">
             <label for="cinRecto">Carte d'identité - Recto</label>
             <input id="cinRecto" type="file" (change)="onFileChange($event, 'cinRecto')" class="form-control">
@@ -61,8 +56,8 @@
           <div class="btn-container">
             <button type="submit" class="btn btn-primary">Enregistrer</button>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>
