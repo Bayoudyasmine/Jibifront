@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../service/login.service';
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-login-component',
@@ -9,36 +9,45 @@ import {Router} from "@angular/router";
   styleUrls: ['./login-component.component.css']
 })
 export class LoginComponentComponent implements OnInit {
-  email!:'';
-  password!:'';
-  loginForm!: FormGroup; // Utilisation de ! pour indiquer que loginForm sera initialisé dans ngOnInit
+  loginForm!: FormGroup;
   errorMessage: string = '';
 
   constructor(
-    private router : Router,
+    private router: Router,
     private formBuilder: FormBuilder,
     private loginService: LoginService
   ) { }
 
   ngOnInit(): void {
-    this.loginForm=this.formBuilder.group({
-      password: this.formBuilder.control(null,[Validators.required,Validators.minLength(5)]),
-
-      email : this.formBuilder.control(null,[Validators.required])
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(5)]]
     });
   }
-  onSubmit(): void {
-    console.log(this.email + this.password);
-    let body = this.loginForm.value
-    //console.log("Le body hhhhhhhhhhh",body)
-    this.loginService.login(body.email, body.password).subscribe(
-      token => {
-        // Redirect to the desired page after successful login
-        this.router.navigate(['/creditors-list']);
-      },
-      error => {
-        this.errorMessage = 'Login failed. Please check your email and password.';
-      });
-  }
 
+  onSubmit(): void {
+    if (this.loginForm.valid) {
+      const { email, password } = this.loginForm.value;
+      this.loginService.login(email, password).subscribe(
+        (response: any) => {
+          const role = localStorage.getItem('role')
+
+          if (role === 'ROLE_AGENT') {
+            this.router.navigate(['/agent-page']);
+          } else if (role === 'ROLE_CLIENT') {
+            this.router.navigate(['/dashboard-client']);
+          } else if (role === 'ROLE_ADMIN') {
+            this.router.navigate(['/formulaire']);
+          } else {
+            this.errorMessage = 'Rôle inconnu reçu du serveur';
+          }
+        },
+        error => {
+          this.errorMessage = 'Échec de la connexion. Veuillez vérifier votre email et votre mot de passe.';
+        }
+      );
+    } else {
+      this.errorMessage = 'Veuillez entrer une adresse email et un mot de passe valides.';
+    }
+  }
 }

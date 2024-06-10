@@ -180,3 +180,26 @@ h3 {
   flex: 0 0 auto; /* Prevent the "+" button from flexing */
   margin-right: 0; /* Remove the default margin from the button */
 }
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+/* Styling for the phone prefix */
+.phone-prefix {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #333;
+}
+
+/* Ajustez les styles selon vos besoins */
+.form-group {
+  position: relative;
+}
+
+.form-control {
+  padding-left: 50px; /* Ajustez selon votre mise en page */
+}
+

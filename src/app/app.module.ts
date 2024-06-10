@@ -10,13 +10,23 @@ import {HistoryComponent} from "./history/history.component";
 import { MatTabsModule } from '@angular/material/tabs'
 import {LoginComponentComponent} from "./login-component/login-component.component";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {AgentComponent} from "./agent-component/agent.component";
+import {PhonePrefixDirective} from "./formulaire/phonePrefixDirective";
+import {ClientDetailComponent} from "./client-detail/client-detail.component";
+import {AdminComponent} from "./admin/admin.component";
+import {AgentDetailComponent} from "./agent-detail/agent-detail.component";
 @NgModule({
   declarations: [
     AppComponent,
     FormulaireComponent,
-    CreatePaymentAccountComponent,
     CreditorsListComponent,
     LoginComponentComponent,
+    AgentComponent,
+    PhonePrefixDirective,
+    ClientDetailComponent,
+    CreatePaymentAccountComponent,
+    AdminComponent,
+    AgentDetailComponent
   ],
   imports: [
     BrowserModule,

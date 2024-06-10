@@ -21,11 +21,13 @@ export class LoginService {
 
     return this.http.post(this.apiUrl, formData, { headers, responseType: 'text' }).pipe(
       map(response => {
-        // Assuming the response is the token
-        const token = response;
-        if (token) {
-          console.log(token)
-          localStorage.setItem('token', token); // Save the token in local storage
+        // Assuming the response is a JSON object containing role and token
+        const { role, token } = JSON.parse(response);
+        console.log(token);
+        console.log(role);
+        if (token && role) {
+          localStorage.setItem('token', token); // Enregistrer le token dans le localStorage
+          localStorage.setItem('role', role); // Enregistrer le rôle dans le localStorage
         }
         return token;
       })

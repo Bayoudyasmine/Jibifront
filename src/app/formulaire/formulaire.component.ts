@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {AgentService} from "../service/agent.service";
-import {Router} from "@angular/router";
+import { AgentService } from "../service/agent.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-formulaire',
@@ -10,8 +10,11 @@ import {Router} from "@angular/router";
 })
 export class FormulaireComponent implements OnInit {
   formulaire: FormGroup;
+  emailExistsError = false ;
+  emailConfirmationError: boolean = false; // Ajout d'une variable pour gérer l'erreur de confirmation d'email
 
-  constructor(private fb: FormBuilder,private agentService:AgentService,private router:Router) {
+
+  constructor(private fb: FormBuilder, private agentService: AgentService, private router: Router) {
     this.formulaire = this.fb.group({
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
@@ -35,53 +38,41 @@ export class FormulaireComponent implements OnInit {
   ngOnInit(): void {}
 
   onFileChange(event: any, fileType: string): void {
-    // @ts-ignore
-    const file = (event.target as HTMLInputElement).files[0];
-    if (fileType === 'recto') {
-      // @ts-ignore
-      this.formulaire.get('piecesJointes').patchValue({ fichierRecto: file });
-    } else if (fileType === 'verso') {
-      // @ts-ignore
-      this.formulaire.get('piecesJointes').patchValue({ fichierVerso: file });
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file && fileType === 'recto') {
+      this.formulaire.get('piecesJointes')?.get('fichierRecto')?.setValue(file);
+    } else if (file && fileType === 'verso') {
+      this.formulaire.get('piecesJointes')?.get('fichierVerso')?.setValue(file);
     }
   }
 
   onSubmit(): void {
     if (this.formulaire.valid) {
-      const formData = new FormData();
-      // @ts-ignore
-      formData.append('lastname', this.formulaire.get('nom').value);
-      // @ts-ignore
-      formData.append('firstname', this.formulaire.get('prenom').value);
-      // @ts-ignore
-      formData.append('pieceIdentite', this.formulaire.get('pieceIdentite').value);
-      // @ts-ignore
-      formData.append('numCin', this.formulaire.get('numeroPieceIdentite').value);
-      // @ts-ignore
-      formData.append('birthdate', this.formulaire.get('dateNaissance').value);
-      // @ts-ignore
-      formData.append('address', this.formulaire.get('adresse').value);
-      // @ts-ignore
-      formData.append('email', this.formulaire.get('email').value);
-      // @ts-ignore
-      formData.append('emailConfirmation', this.formulaire.get('confirmationEmail').value);
-      // @ts-ignore
-      formData.append('phonenumber', this.formulaire.get('numeroTelephone').value);
-      // @ts-ignore
-      formData.append('numRegCom', this.formulaire.get('numeroImmatriculation').value);
-      // @ts-ignore
-      formData.append('numLicence', this.formulaire.get('numeroPatente').value);
-      // @ts-ignore
-      formData.append('description', this.formulaire.get('description').value);
+      if (this.formulaire.get('email')?.value !== this.formulaire.get('confirmationEmail')?.value) {
+        this.emailConfirmationError = true; // Activer l'erreur de confirmation d'email
+        return;
+      }
 
-      // @ts-ignore
-      const fileRecto = this.formulaire.get('piecesJointes').get('fichierRecto').value;
+      const formData = new FormData();
+      formData.append('lastname', this.formulaire.get('nom')?.value);
+      formData.append('firstname', this.formulaire.get('prenom')?.value);
+      formData.append('pieceIdentite', this.formulaire.get('pieceIdentite')?.value);
+      formData.append('numCin', this.formulaire.get('numeroPieceIdentite')?.value);
+      formData.append('birthdate', this.formulaire.get('dateNaissance')?.value);
+      formData.append('address', this.formulaire.get('adresse')?.value);
+      formData.append('email', this.formulaire.get('email')?.value);
+      formData.append('emailConfirmation', this.formulaire.get('confirmationEmail')?.value);
+      formData.append('phonenumber', this.formulaire.get('numeroTelephone')?.value);
+      formData.append('numRegCom', this.formulaire.get('numeroImmatriculation')?.value);
+      formData.append('numLicence', this.formulaire.get('numeroPatente')?.value);
+      formData.append('description', this.formulaire.get('description')?.value);
+
+      const fileRecto = this.formulaire.get('piecesJointes')?.get('fichierRecto')?.value;
       if (fileRecto) {
         formData.append('cinRecto', fileRecto);
       }
 
-      // @ts-ignore
-      const fileVerso = this.formulaire.get('piecesJointes').get('fichierVerso').value;
+      const fileVerso = this.formulaire.get('piecesJointes')?.get('fichierVerso')?.value;
       if (fileVerso) {
         formData.append('cinVerso', fileVerso);
       }
@@ -93,16 +84,11 @@ export class FormulaireComponent implements OnInit {
         },
         error => {
           console.error('Erreur lors de l\'envoi des données', error);
+          if (error.status === 409 && error.error && error.error.message === 'Email already exists') {
+            this.emailExistsError = true; // Activer l'erreur d'email existant
+          }
         }
       );
-
-      // console.log("Form Data:");
-      // const formDataObject = {};
-      // formData.forEach((value, key) => {
-      //   // @ts-ignore
-      //   formDataObject[key] = value;
-      // });
-      // console.log(formDataObject);
     } else {
       console.error('Formulaire invalide');
     }

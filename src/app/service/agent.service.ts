@@ -21,7 +21,13 @@ export class AgentService {
   subscribeAgent(formData: FormData): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
     return this.http.post<any>("http://localhost:8080/api/agents", formData, { headers });
   }
+
+  deleteClient(id: number): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete(`${this.apiUrl}/${id}`, { headers });
+  }
+
 }

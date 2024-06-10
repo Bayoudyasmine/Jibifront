@@ -1,0 +1,12 @@
+<div *ngIf="client" class="client-detail-modal">
+  <div class="modal-content">
+    <h2>Détails du Client</h2>
+    <p><strong>ID:</strong> {{ client.id }}</p>
+    <p><strong>Nom:</strong> {{ client.lastname }}</p>
+    <p><strong>Prénom:</strong> {{ client.firstname }}</p>
+    <p><strong>Email:</strong> {{ client.email }}</p>
+    <p><strong>Téléphone:</strong> {{ client.phonenumber }}</p>
+    <!-- Ajoutez d'autres détails du client ici -->
+    <button (click)="closeDetails()" class="close-button">Fermer</button>
+  </div>
+</div>
