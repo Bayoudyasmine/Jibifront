@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {AgentService} from "../service/agent.service";
 import {ClientService} from "../service/client.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-payment-account',
@@ -14,7 +15,7 @@ export class CreatePaymentAccountComponent implements OnInit {
   cinRectoFile: File | null = null;
   cinVersoFile: File | null = null;
 
-  constructor(private fb: FormBuilder , private clientService:ClientService) {
+  constructor(private fb: FormBuilder , private clientService:ClientService,private router:Router) {
     this.clientInfoForm = this.fb.group({
       product: ['COMPTE_200', Validators.required],
       nom: ['', Validators.required],
@@ -40,12 +41,12 @@ export class CreatePaymentAccountComponent implements OnInit {
       formData.append('firstname', this.clientInfoForm.get('prenom')?.value);
       formData.append('phonenumber', this.clientInfoForm.get('telephone')?.value);
       formData.append('email', this.clientInfoForm.get('email')?.value);
-      formData.append('cinRectoPath', this.cinRectoFile);
-      formData.append('cinVersoPath', this.cinVersoFile);
+      formData.append('cinRecto', this.cinRectoFile);
+      formData.append('cinVerso', this.cinVersoFile);
 
       // Log the formData to see if files are correctly appended
       //for (let key of formData.keys()) {
-        console.log(formData.get("cinRectoPath"));
+        console.log(formData.get("cinRecto"));
       //}
 
    //   Call your service method to handle the form submission
@@ -53,7 +54,7 @@ export class CreatePaymentAccountComponent implements OnInit {
         response => {
           // Handle successful response
           console.log(response)
-        },
+          this.router.navigate(['/agent-page']);        },
         error => {
           // Handle error response
           console.error(error)

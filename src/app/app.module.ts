@@ -17,6 +17,8 @@ import {AdminComponent} from "./admin/admin.component";
 import {AgentDetailComponent} from "./agent-detail/agent-detail.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {FirstLoginComponent} from "./firstlogin/firstlogin.component";
+import {TransferMoneyComponent} from "./transfer-money/transfer-money.component";
+import {HomeComponent} from "./home/home.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +32,8 @@ import {FirstLoginComponent} from "./firstlogin/firstlogin.component";
     AdminComponent,
     AgentDetailComponent,
     DashboardComponent,
-    FirstLoginComponent
+    FirstLoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import {FirstLoginComponent} from "./firstlogin/firstlogin.component";
     ReactiveFormsModule,
     MatTabsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    TransferMoneyComponent
   ],
   providers: [],
   exports: [
