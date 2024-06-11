@@ -30,7 +30,9 @@
             <div class="creditor-products">
               <label>{{creditor.name}}</label>
               <ul>
-                <li *ngFor="let product of creditor.products">{{product}}</li>
+                <li *ngFor="let product of creditor.products">
+                  <button class="product-button" (click)="selectProduct(creditor.type, product)">{{product}}</button>
+                </li>
               </ul>
             </div>
           </div>
@@ -45,5 +47,7 @@
       </ul>
     </div>
   </div>
+
+  <app-dynamic-form *ngIf="selectedCreditorForm" [formConfig]="selectedCreditorForm" [product]="selectedProduct"></app-dynamic-form>
 </div>
 </body>

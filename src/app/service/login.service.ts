@@ -25,12 +25,14 @@ export class LoginService {
       map(response => {
         console.log({ email, password });
         // Assuming the response is a JSON object containing role and token
-        const { firstlogin, role, token } = JSON.parse(response);
+        const { id, firstlogin, role, token } = JSON.parse(response)
+        console.log(id);
         console.log(firstlogin);
         console.log(token);
         console.log(role);
         if (token && role) {
           localStorage.setItem('firstlogin', firstlogin);
+          localStorage.setItem('id', id);
           localStorage.setItem('token', token); // Enregistrer le token dans le localStorage
           localStorage.setItem('role', role); // Enregistrer le rôle dans le localStorage
         }

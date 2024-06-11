@@ -48,7 +48,7 @@ export class LoginComponentComponent implements OnInit {
             }
             // this.router.navigate(['/agent-page']);
           } else if (role === 'ROLE_ADMIN') {
-            this.router.navigate(['/formulaire']);
+            this.router.navigate(['/admin-page']);
           } else {
             this.errorMessage = 'Rôle inconnu reçu du serveur';
           }

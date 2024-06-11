@@ -17,6 +17,7 @@ import {AdminComponent} from "./admin/admin.component";
 import {AgentDetailComponent} from "./agent-detail/agent-detail.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {FirstLoginComponent} from "./firstlogin/firstlogin.component";
+import {DynamicFormComponent} from "./creditors-list/dynamic-form/dynamic-form.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import {FirstLoginComponent} from "./firstlogin/firstlogin.component";
     AdminComponent,
     AgentDetailComponent,
     DashboardComponent,
-    FirstLoginComponent
+    FirstLoginComponent,
+    DynamicFormComponent
   ],
   imports: [
     BrowserModule,

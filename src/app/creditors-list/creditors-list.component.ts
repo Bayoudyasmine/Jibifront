@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormService } from '../service/form.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-creditors-list',
@@ -6,56 +8,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./creditors-list.component.css']
 })
 export class CreditorsListComponent implements OnInit {
-  activeTab: string = 'creditors'; // Déclarer la propriété activeTab
+  activeTab: string = 'creditors';
   creditors = [
-    {
-      logo: 'assets/images/maroc-telecom.png',
-      name: 'IAM Recharges',
-      products: ['Téléphonie et Internet SIM']
-    },
-    {
-      logo: 'assets/images/maroc-telecom.png',
-      name: 'IAM Factures',
-      products: ['Produit Internet SIM', 'Produit Fixe SIM', 'Produit Mobile SIM']
-    },
-    {
-      logo: 'assets/images/redal.jpeg',
-      name: 'Redal',
-      products: ['Factures Redal']
-    },
-    {
-      logo: 'assets/images/amendis.png',
-      name: 'Amendis Tanger',
-      products: ['Factures Amendis Tanger']
-    },
-    {
-      logo: 'assets/images/amendis.png',
-      name: 'Amendis Tétouan',
-      products: ['Factures Amendis Tétouan']
-    },
-    {
-      logo: 'assets/images/lydec.jpeg',
-      name: 'Lydec',
-      products: ['Factures Lydec']
-    }
+    { type: 'recharge', logo: 'assets/images/maroc-telecom.png', name: 'IAM Recharges', products: ['Téléphonie et Internet SIM'] },
+    { type: 'FACTURE', logo: 'assets/images/maroc-telecom.png', name: 'IAM Factures', products: ['Produit Internet SIM', 'Produit Fixe SIM', 'Produit Mobile SIM'] },
+    { type: 'FACTURE', logo: 'assets/images/inwi.png', name: 'Inwi Factures', products: ['Produit Internet SIM', 'Produit Fixe SIM', 'Produit Mobile SIM'] },
+    { type: 'FACTURE', logo: 'assets/images/redal.jpeg', name: 'Redal', products: ['Factures Redal'] },
+    { type: 'FACTURE', logo: 'assets/images/amendis.png', name: 'Amendis Tanger', products: ['Factures Amendis Tanger'] },
+    { type: 'FACTURE', logo: 'assets/images/amendis.png', name: 'Amendis Tétouan', products: ['Factures Amendis Tétouan'] },
+    { type: 'FACTURE', logo: 'assets/images/lydec.jpeg', name: 'Lydec', products: ['Factures Lydec'] },
+    { type: 'DONATION', logo: 'assets/images/ALCS.png', name: 'ALCS DONATION', products: ['Don sidaction'] }
   ];
 
   paymentHistory: string[] = [
     "Paiement du créancier ONCF - 2023-01-15",
     "Paiement de la facture de téléphone - 2023-02-20",
     "Paiement de la facture d'eau - 2023-03-10"
-    // Ajoutez d'autres éléments d'historique des paiements ici
   ];
 
+  allCategories: string[] = ['ONCF', 'Téléphone', 'Eau', 'Électricité'];
+  selectedCategory: string = 'Toutes les catégories';
+  selectedCreditorForm: any = null;
+  selectedProduct: string = '';
 
-  allCategories: string[] = ['ONCF', 'Téléphone', 'Eau', 'Électricité']; // Liste de toutes les catégories
-  selectedCategory: string = 'Toutes les catégories'; // Catégorie sélectionnée par défaut
+  constructor(private formService: FormService, private fb: FormBuilder) {}
 
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   get filteredCreditors() {
     if (this.selectedCategory === 'Toutes les catégories') {
@@ -66,6 +44,7 @@ export class CreditorsListComponent implements OnInit {
       );
     }
   }
+
   getCreditorPairs(creditors: any[]) {
     const pairs = [];
     for (let i = 0; i < creditors.length; i += 2) {
@@ -73,4 +52,20 @@ export class CreditorsListComponent implements OnInit {
     }
     return pairs;
   }
+
+  selectProduct(creditorType: string, product: string) {
+    this.selectedProduct = product;
+    console.log(`Creditor Type: ${creditorType}, Product: ${product}`);
+
+    this.formService.getFormByType(creditorType).subscribe(
+      form => {
+        console.log('Form retrieved:', form);
+        this.selectedCreditorForm = form;
+      },
+      error => {
+        console.error('Error fetching form:', error);
+      }
+    );
+  }
+
 }
