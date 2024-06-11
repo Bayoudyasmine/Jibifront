@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
   showBalance: boolean = false;
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     const toggleEyeButton = document.getElementById('toggle-eye') as HTMLInputElement;
@@ -26,13 +29,13 @@ export class ProfileComponent implements OnInit {
       // Ajoutez une action au clic du bouton "Effectuer un virement"
       toggleTransferButton.addEventListener('click', () => {
         // Rediriger vers la page de virement
-        window.location.href = '/virement';
+        this.router.navigate(['/virement']);
       });
 
       // Ajoutez une action au clic du bouton "Liste des créanciers"
       toggleCreditorsButton.addEventListener('click', () => {
         // Rediriger vers la page de liste des créanciers
-        window.location.href = '/creditors-list';
+        this.router.navigate(['/creditors-list']);
       });
     }
   }
