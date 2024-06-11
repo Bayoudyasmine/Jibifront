@@ -26,6 +26,7 @@ export class AgentComponent implements OnInit {
     this.agentService.getClients().subscribe(
       (data: ClientDTO[]) => {
         this.clients = data;
+        console.log(this.clients[1]);
         this.filteredClients = [...this.clients]; // Initialiser les clients filtrés
       },
       error => {

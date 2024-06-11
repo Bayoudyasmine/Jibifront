@@ -11,17 +11,23 @@ import {AgentComponent} from "./agent-component/agent.component";
 import {AdminComponent} from "./admin/admin.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {FirstLoginComponent} from "./firstlogin/firstlogin.component";
+import {TransferMoneyComponent} from "./transfer-money/transfer-money.component";
+import {HomeComponent} from "./home/home.component";
+import {DonationFormComponent} from "./donation-form/donation-form.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  // { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', component:HomeComponent },
   { path: 'creditors-list', component: CreditorsListComponent },
   { path: 'history', component: HistoryComponent },
   {path : 'formulaire', component: FormulaireComponent },
   {path : 'create-payment-account', component: CreatePaymentAccountComponent },
+  {path:'transfer-money',component:TransferMoneyComponent},
   {path : 'login', component: LoginComponentComponent },
   {path : 'agent-page', component: AgentComponent },
   {path : 'admin-page', component: DashboardComponent },
-  {path : 'firstlogin', component: FirstLoginComponent }
+  {path : 'firstlogin', component: FirstLoginComponent },
+  {path:'donation-form',component:DonationFormComponent}
 
 
 ];
