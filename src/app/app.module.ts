@@ -18,6 +18,10 @@ import {AgentDetailComponent} from "./agent-detail/agent-detail.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {FirstLoginComponent} from "./firstlogin/firstlogin.component";
 import {DynamicFormComponent} from "./creditors-list/dynamic-form/dynamic-form.component";
+import {HomeComponent} from "./home/home.component";
+import {ProfileComponent} from "./profile/profile.component";
+import {NavbarComponent} from "./navbar/navbar.component";
+import {FooterComponent} from "./footer/footer.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +36,11 @@ import {DynamicFormComponent} from "./creditors-list/dynamic-form/dynamic-form.c
     AgentDetailComponent,
     DashboardComponent,
     FirstLoginComponent,
-    DynamicFormComponent
+    DynamicFormComponent,
+    HomeComponent,
+    ProfileComponent,
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormService } from '../service/form.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
-
+import {AccountOperationService} from "../service/account-operation.service";
+import {ClientDTO} from "../model/ClientDTO.model";
+import {AccountOperationDTO} from "../model/AccountOpertionDTO.model";
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-creditors-list',
   templateUrl: './creditors-list.component.html',
@@ -30,10 +33,16 @@ export class CreditorsListComponent implements OnInit {
   selectedCategory: string = 'Toutes les catégories';
   selectedCreditorForm: any = null;
   selectedProduct: string = '';
+  // @ts-ignore
+  clientDTO : ClientDTO=JSON.parse(localStorage.getItem("clientDTO"));
+  accountId=this.clientDTO.bankAccountDTO.id;
+  protected accountOperations: AccountOperationDTO[] | undefined;
 
-  constructor(private formService: FormService, private fb: FormBuilder) {}
+  constructor(private formService: FormService, private fb: FormBuilder,private  accountOperationService:AccountOperationService,private location: Location) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadAccountOperations();
+  }
 
   get filteredCreditors() {
     if (this.selectedCategory === 'Toutes les catégories') {
@@ -68,4 +77,31 @@ export class CreditorsListComponent implements OnInit {
     );
   }
 
+  loadAccountOperations(): void {
+    this.accountOperationService.getAccountOperations(this.accountId)
+      .subscribe(
+        operations => {
+          this.accountOperations = operations;
+          console.log(this.accountOperations); // Pour vérifier dans la console du navigateur
+        },
+        error => {
+          console.error('Erreur lors du chargement des opérations de compte :', error);
+        }
+      );
+  }
+
+  formatDateTime(dateTime: Date): string {
+    const operationDate = new Date(dateTime);
+    const year = operationDate.getFullYear();
+    const month = operationDate.getMonth() + 1;
+    const day = operationDate.getDate();
+    const hours = operationDate.getHours();
+    const minutes = operationDate.getMinutes();
+    // Créer une chaîne formatée avec le format souhaité
+    return `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}T${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}`;
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
 }

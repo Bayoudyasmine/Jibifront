@@ -21,22 +21,20 @@ export class LoginService {
     formData.append('email', email);
     formData.append('password', password);
 
-    return this.http.post(this.apiUrl, formData, { headers, responseType: 'text' }).pipe(
+    return this.http.post<any>(this.apiUrl, formData, { headers }).pipe(
       map(response => {
-        console.log({ email, password });
+        console.log({ response });
         // Assuming the response is a JSON object containing role and token
-        const { id, firstlogin, role, token } = JSON.parse(response)
-        console.log(id);
-        console.log(firstlogin);
-        console.log(token);
-        console.log(role);
+        const { firstlogin, role, token, clientId, clientDTO } = response;
+
         if (token && role) {
           localStorage.setItem('firstlogin', firstlogin);
-          localStorage.setItem('id', id);
           localStorage.setItem('token', token); // Enregistrer le token dans le localStorage
           localStorage.setItem('role', role); // Enregistrer le rôle dans le localStorage
+          localStorage.setItem('clientId', clientId); // Enregistrer le rôle dans le localStorage
+          localStorage.setItem('clientDTO', JSON.stringify(clientDTO));
         }
-        return token;
+        return response;
       })
     );
   }
