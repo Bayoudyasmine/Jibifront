@@ -59,6 +59,7 @@ import { VerificationCodeComponent } from './verification-code/verification-code
         InvoicePaymentComponent,
         DonationFormComponent
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+
 })
 export class AppModule { }

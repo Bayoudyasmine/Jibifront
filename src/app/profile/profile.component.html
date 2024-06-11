@@ -1,126 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Métadonnées -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Titre de la page -->
     <title>Informations personnelles du client :</title>
-    <!-- Lien vers la feuille de style -->
     <link rel="stylesheet" href="profile.component.css">
-    <!-- Feuille de style pour les éléments spécifiques à cet exemple -->
-    <style>
-        /* Styles pour l'œil */
-        #eye {
-            position: relative;
-            width: 40px;
-            height: 20px;
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            background: #e00a0a;
-            border: 2px solid black;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-
-        #eye::before {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: black;
-            border-radius: 50%;
-            top: 0;
-            left: 0;
-            transition: all 0.3s ease;
-        }
-
-        /* Masquer le solde initial */
-        .balance {
-            display: none;
-        }
-
-        /* Afficher le solde lorsque la classe visible est ajoutée */
-        .balance.visible {
-            display: block;
-        }
-
-        /* Masquer le solde avec des astérisques */
-        #balance-value.hidden {
-            font-size: 0;
-        }
-    </style>
 </head>
 <body>
 <div class="profile-page">
     <div class="content">
-        <!-- Section de la couverture -->
         <div class="content__cover">
-            <!-- Avatar -->
             <div class="content__avatar"></div>
-            <!-- Balance -->
+            <div class="content__client-name">Mr.Mohamed Alaoui</div> <!-- Nom du client -->
             <div class="content__balance">
-                <!-- Œil pour afficher/masquer le solde -->
-                <div id="eye"></div>
-                <!-- Conteneur de la balance -->
-                <div class="balance" id="balance">
-                    <span id="balance-value">Votre solde : $100</span>
+                <div class="balance">
+                    <span id="balance-label">Solde: </span>
+                    <span id="balance-value" *ngIf="showBalance">$100</span>
                 </div>
+                <label class="switch">
+                    <input type="checkbox" [(ngModel)]="showBalance" id="toggle-eye">
+                    <div class="slider"></div>
+                </label>
+
+
             </div>
-            <!-- Animation -->
+            <div class="content__actions">
+                <button id="toggle-transfer">Effectuer un virement</button>
+                <button id="toggle-creditors">Liste des créanciers</button>
+            </div>
             <div class="content__bull"><span></span><span></span><span></span><span></span><span></span></div>
         </div>
-        <!-- Section de description -->
         <div class="content__description">
-            <!-- Liste des informations personnelles -->
             <ul class="content__list">
-                <li><strong>Prénom:</strong> John</li>
-                <li><strong>Nom:</strong> Doe</li>
-                <li><strong>Pièce d'identité:</strong> C.I.N</li>
-                <li><strong>Numéro de pièce d'identité:</strong> 123456789</li>
-                <li><strong>Date de naissance:</strong> 1990-01-01</li>
-                <li><strong>Adresse:</strong> 123 Rue de la Liberté</li>
-                <li><strong>Email:</strong> john.doe&#64;example.com</li>
-                <li><strong>Numéro de téléphone:</strong> 123-456-7890</li>
-                <li><strong>Numéro d'immatriculation:</strong> ABC123</li>
-                <li><strong>Numéro de patente:</strong> XYZ789</li>
+                <!-- Informations personnelles du client -->
             </ul>
         </div>
     </div>
-    <!-- Animation d'arrière-plan -->
     <div class="bg">
         <div><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
     </div>
-    <!-- Bouton de changement de thème (placeholder) -->
     <div class="theme-switcher-button" id="theme-switcher-button">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-            <!-- Placeholder pour l'icône du changement de thème -->
+            <!-- Theme Switcher SVG -->
         </svg>
     </div>
 </div>
-<!-- Script JavaScript -->
-<script>
-    // Obtenez une référence à l'œil et au solde
-    var eye = document.getElementById('eye');
-    var balanceDiv = document.getElementById('balance');
-    var balanceValue = document.getElementById('balance-value');
 
-    // Variable pour suivre l'état de l'œil (ouvert ou fermé)
-    var eyeOpen = false;
-
-    // Ajoutez un écouteur d'événements au clic sur l'œil
-    eye.addEventListener('click', function() {
-        // Inversez l'état de l'œil
-        eyeOpen = !eyeOpen;
-
-        // Mettez à jour l'apparence de l'œil
-        if (eyeOpen) {
-            eye.style.borderRadius = '50% 50% 50% 50% / 60% 60% 60% 60%';
-            balanceValue.classList.remove('hidden');
-        } else {
-            eye.style.borderRadius = '50% 50% 50% 50% / 60% 60% 40% 40%';
-            balanceValue.classList.add('hidden');
-        }
-    });
-</script>
 </body>
 </html>
