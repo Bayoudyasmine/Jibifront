@@ -10,6 +10,10 @@ export class NavbarComponent {
   constructor(private router: Router) {}
 
   navigateToBankeOnline() {
-    this.router.navigate(['/banke-online']);
+    this.router.navigate(['/login']);
+  }
+
+  isLoggedIn() {
+
   }
 }

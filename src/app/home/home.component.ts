@@ -11,7 +11,7 @@ export class HomeComponent {
     loginDialogDisplayed: boolean = false; // Variable de statut
     errorMessage: any;
     loginForm: any;
-    blurBackground: boolean = false; // Ajout de la variable pour contrôler le flou de l'arrière-plan
+    blurBackground: boolean = true; // Ajout de la variable pour contrôler le flou de l'arrière-plan
 
     constructor(public dialog: MatDialog) { }
 

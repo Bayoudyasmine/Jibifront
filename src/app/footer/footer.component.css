@@ -57,13 +57,17 @@
     margin-left: 5px;
 }
 
-.social-links li {
-    margin-bottom: 5px; /* Espace entre les liens sociaux */
+.social-links a {
+    margin-top: 8px; /* Espace entre les liens sociaux */
+
 }
 
 .animated-link {
     color: #000000; /* Couleur du lien animé */
     transition: color 0.3s; /* Animation de transition de couleur */
+    margin-right: 37px;
+    margin-left: 45px;
+    padding-bottom: 5px;
 }
 
 .animated-link:hover {
