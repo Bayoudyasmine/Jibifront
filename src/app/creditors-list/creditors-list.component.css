@@ -12,33 +12,31 @@ body {
   padding: 20px;
   margin: 20px auto;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgb(255, 166, 33);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   max-width: 1200px;
 }
 
 /* Onglets styles */
 .payment-heading {
-  font-family: Arial sans-serif;
+  font-family: Arial;
   font-size: 25px;
-  color: #000000;
-  margin-top: 10px;
-  margin-left: 60px;
+  color: #808080;
 }
 
 #categorySelect {
   width: 100%;
-  font-family: Arial sans-serif;
+  font-family: Arial;
   font-size: 18px;
-  color: #000000;
-  border-color: #127957;
+  color: #808080;
+  border-color: #808080;
   margin-bottom: 20px;
   margin-top: 20px;
 }
 
 #categorySelect option {
-  font-family: Arial sans-serif;
+  font-family: Arial;
   font-size: 16px;
-  color: #000000;
+  color: #808080;
 }
 
 .onglets {
@@ -70,10 +68,10 @@ body {
 .onglets__nav-link.active {
   background-color: #fff;
   color: #333; /* Couleur du texte en blanc */
-  border-left: 1px solid #127957;
-  border-right: 1px solid #127957;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
   border-bottom: none; /* Supprimer la bordure inférieure pour fusionner avec le conteneur */
-  border-top: 1px solid #127957;
+  border-top: 1px solid #ddd;
 }
 
 .onglets__nav-link:not(.active) {
@@ -111,9 +109,9 @@ body {
 .creditor {
   flex: 1;
   margin-right: 20px;
-  border: 1px solid #000000;
+  border: 1px solid #ddd;
   padding: 10px;
-  box-shadow: 0 0 5px rgb(255, 166, 33);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   display: flex;
   transition: border-color 0.3s;
   height: 200px; /* Hauteur fixe pour toutes les boîtes de créanciers */
@@ -124,8 +122,7 @@ body {
 }
 
 .creditor:hover {
-  border-color: #127957 ;
-
+  border-color: #888;
 }
 
 .creditor-logo {
@@ -142,10 +139,8 @@ body {
 
 .creditor-products {
   width: 60%;
-  padding-left: 12px;
-  border-left: 1px solid #127957; /* Ligne grise entre le logo et les produits */
-  color: #000000;
-  font-family: Arial sans-serif;
+  padding-left: 10px;
+  border-left: 1px solid #ddd; /* Ligne grise entre le logo et les produits */
 }
 
 .creditor-products label {
@@ -153,10 +148,8 @@ body {
   margin-bottom: 20px;
   margin-top: 20px;
   font-size: 20px;
-  font-family: "Arial sans serif";
-  font-weight:bold;
-  color: #127957;
-
+  font-family: "Arial";
+  color: #808080;
 }
 
 .creditor-products ul {
@@ -169,21 +162,26 @@ body {
   font-size: 14px;
 }
 
-.back-button {
-  /*position: fixed;*/
-  /*bottom: 20px;*/
-  /*right: 20px;*/
-  /*padding: 10px 20px;*/
-  /*background-color: rgba(164, 190, 239, 0.9);*/
-  color: #127957;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-left: 5px;
+/* Styles pour la popup */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 2px solid black;
+  z-index: 1000;
+  width: 80%;
+  max-width: 600px;
 }
 
-/*.back-button:hover {*/
-/*  background-color: #127957;*/
-/*}*/
-
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}

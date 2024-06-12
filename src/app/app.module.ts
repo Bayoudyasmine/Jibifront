@@ -22,6 +22,7 @@ import {HomeComponent} from "./home/home.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {NavbarComponent} from "./navbar/navbar.component";
 import {FooterComponent} from "./footer/footer.component";
+import {ConfirmationComponent} from "./creditors-list/payment-confirmation/payment-confirmation.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import {FooterComponent} from "./footer/footer.component";
     HomeComponent,
     ProfileComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,

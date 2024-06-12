@@ -33,7 +33,7 @@ export class ConfirmationComponent implements OnChanges {
   ngOnChanges() {}
 
   confirmPayment() {
-    const clientId = localStorage.getItem('id');
+    const clientId = localStorage.getItem('clientId');
     if (!clientId) {
       console.error('Client ID not found in localStorage');
       return;
@@ -49,8 +49,11 @@ export class ConfirmationComponent implements OnChanges {
       this.confirmation.emit(true);
     }, error => {
       console.error('Error confirming payment', error);
+      alert('Votre solde et insuffisant pour faire cette operation.'); // Afficher une alerte en cas d'échec du paiement
+
     });
   }
+
 
   setInvoiceDetails() {
     this.phoneNumber = this.formData.get('phoneNumber');

@@ -1,3 +1,4 @@
+<div *ngIf="showForm && formConfig">
 <div *ngIf="formConfig">
   <h2>Form for {{formConfig.type}} - {{product}}</h2>
   <form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
@@ -46,3 +47,6 @@
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
+</div>
+
+<app-confirmation *ngIf="!showForm && formData" [formData]="formData" [formConfigType]="formConfig.type"></app-confirmation>

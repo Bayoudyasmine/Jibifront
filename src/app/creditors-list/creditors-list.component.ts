@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormService } from '../service/form.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import {AccountOperationService} from "../service/account-operation.service";
-import {ClientDTO} from "../model/ClientDTO.model";
-import {AccountOperationDTO} from "../model/AccountOpertionDTO.model";
-import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-creditors-list',
   templateUrl: './creditors-list.component.html',
@@ -13,7 +9,7 @@ import { Location } from '@angular/common';
 export class CreditorsListComponent implements OnInit {
   activeTab: string = 'creditors';
   creditors = [
-    { type: 'recharge', logo: 'assets/images/maroc-telecom.png', name: 'IAM Recharges', products: ['Téléphonie et Internet SIM'] },
+    { type: 'RECHARGE', logo: 'assets/images/maroc-telecom.png', name: 'IAM Recharges', products: ['Téléphonie et Internet SIM'] },
     { type: 'FACTURE', logo: 'assets/images/maroc-telecom.png', name: 'IAM Factures', products: ['Produit Internet SIM', 'Produit Fixe SIM', 'Produit Mobile SIM'] },
     { type: 'FACTURE', logo: 'assets/images/inwi.png', name: 'Inwi Factures', products: ['Produit Internet SIM', 'Produit Fixe SIM', 'Produit Mobile SIM'] },
     { type: 'FACTURE', logo: 'assets/images/redal.jpeg', name: 'Redal', products: ['Factures Redal'] },
@@ -23,25 +19,20 @@ export class CreditorsListComponent implements OnInit {
     { type: 'DONATION', logo: 'assets/images/ALCS.png', name: 'ALCS DONATION', products: ['Don sidaction'] }
   ];
 
-  paymentHistory: string[] = [
-    "Paiement du créancier ONCF - 2023-01-15",
-    "Paiement de la facture de téléphone - 2023-02-20",
-    "Paiement de la facture d'eau - 2023-03-10"
-  ];
+  paymentHistory: any[] = []; // Historique des paiements
 
   allCategories: string[] = ['ONCF', 'Téléphone', 'Eau', 'Électricité'];
   selectedCategory: string = 'Toutes les catégories';
   selectedCreditorForm: any = null;
   selectedProduct: string = '';
-  // @ts-ignore
-  clientDTO : ClientDTO=JSON.parse(localStorage.getItem("clientDTO"));
-  accountId=this.clientDTO.bankAccountDTO.id;
-  protected accountOperations: AccountOperationDTO[] | undefined;
+  showPopup: boolean = false;
+  showConfirmationPopup: boolean = false; // Variable pour contrôler l'affichage de la confirmation
+  formData: any = null;
 
-  constructor(private formService: FormService, private fb: FormBuilder,private  accountOperationService:AccountOperationService,private location: Location) {}
+  constructor(private formService: FormService) {}
 
   ngOnInit(): void {
-    this.loadAccountOperations();
+    this.loadPaymentHistory();
   }
 
   get filteredCreditors() {
@@ -70,6 +61,7 @@ export class CreditorsListComponent implements OnInit {
       form => {
         console.log('Form retrieved:', form);
         this.selectedCreditorForm = form;
+        this.showPopup = true;
       },
       error => {
         console.error('Error fetching form:', error);
@@ -77,31 +69,34 @@ export class CreditorsListComponent implements OnInit {
     );
   }
 
-  loadAccountOperations(): void {
-    this.accountOperationService.getAccountOperations(this.accountId)
-      .subscribe(
-        operations => {
-          this.accountOperations = operations;
-          console.log(this.accountOperations); // Pour vérifier dans la console du navigateur
-        },
-        error => {
-          console.error('Erreur lors du chargement des opérations de compte :', error);
-        }
-      );
+  closePopup() {
+    this.showPopup = false;
   }
 
-  formatDateTime(dateTime: Date): string {
-    const operationDate = new Date(dateTime);
-    const year = operationDate.getFullYear();
-    const month = operationDate.getMonth() + 1;
-    const day = operationDate.getDate();
-    const hours = operationDate.getHours();
-    const minutes = operationDate.getMinutes();
-    // Créer une chaîne formatée avec le format souhaité
-    return `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}T${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}`;
+  // Méthode pour charger l'historique des paiements depuis le service
+  loadPaymentHistory() {
+    const clientId = localStorage.getItem('clientId');
+    // Remplacez 1 par l'ID du client approprié
+    // @ts-ignore
+    this.formService.getPaymentHistory(clientId).subscribe(
+      (paymentHistory: any[]) => {
+        this.paymentHistory = paymentHistory.map(payment => {
+          return {
+            description: payment.description, // Ajouter la description
+            ...payment // Inclure les autres champs du paiement
+          };
+        });
+        console.log(this.paymentHistory);
+      },
+      error => {
+        console.error('Error fetching payment history:', error);
+      }
+    );
   }
 
-  goBack(): void {
-    this.location.back();
+
+  // Méthode pour gérer la soumission du formulaire
+  handleFormSubmit(formData: any) {
+    this.formData = formData;
   }
 }

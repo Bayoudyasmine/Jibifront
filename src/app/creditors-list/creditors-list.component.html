@@ -14,12 +14,7 @@
 
   <div class="onglets__content">
     <div id="creditors-list" class="onglets__pane" [class.active]="activeTab === 'creditors'">
-      <div class="form-group">
-        <select id="categorySelect" class="form-control mt-3" [(ngModel)]="selectedCategory">
-          <option value="Toutes les catégories">Toutes les catégories</option>
-          <option *ngFor="let category of allCategories" [value]="category">{{ category }}</option>
-        </select>
-      </div>
+      <h2>Avec JIBI, Payez vos factures et effectuez des recharges...</h2>
 
       <div class="creditors-grid">
         <div class="creditor-pair" *ngFor="let pair of getCreditorPairs(filteredCreditors)">
@@ -41,16 +36,26 @@
     </div>
 
     <div id="historique" class="onglets__pane" [class.active]="activeTab === 'historique'">
-      <h2>Historique</h2>
-      <div *ngFor="let operation of accountOperations">
-        <p>{{ formatDateTime(operation.operationDate) }} - {{ operation.description }} - Montant: {{ operation.amount }}</p>
-      </div>
+      <h2>Historique des paiements</h2>
+      <ul>
+        <li *ngFor="let payment of paymentHistory">
+          <div>
+            <span>{{ payment.description }} - {{ payment.amount }} MAD</span>
+            <!-- Ajoutez d'autres informations de paiement si nécessaire -->
+          </div>
+        </li>
+      </ul>
     </div>
+
+
+
+    <!-- Popup for dynamic form -->
+  <div *ngIf="showPopup" class="popup-overlay" (click)="closePopup()"></div>
+  <div *ngIf="showPopup" class="popup">
+    <app-dynamic-form [formConfig]="selectedCreditorForm" [product]="selectedProduct" (formSubmit)="handleFormSubmit($event)"></app-dynamic-form>
+    <button (click)="closePopup()">Close</button>
   </div>
-  <button class="back-button" (click)="goBack()">← Retour</button>
-  <app-dynamic-form *ngIf="selectedCreditorForm" [formConfig]="selectedCreditorForm" [product]="selectedProduct"></app-dynamic-form>
 
-</div>
-<!-- Bouton de retour -->
 
+</div></div>
 </body>
