@@ -49,7 +49,10 @@ export class ConfirmationComponent implements OnChanges {
       this.confirmation.emit(true);
     }, error => {
       console.error('Error confirming payment', error);
+      this.paymentConfirmed = false;
+
       alert('Votre solde et insuffisant pour faire cette operation.'); // Afficher une alerte en cas d'échec du paiement
+      window.location.reload();
 
     });
   }
