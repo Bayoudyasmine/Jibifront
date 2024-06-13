@@ -12,7 +12,7 @@ import {Agent} from "../model/Agent.model";
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  agents: Aggent[] = [];
+  agents: Agent[] = [];
   filteredAgents: Agent[] = []; // Agents filtrés par recherche
   selectedAgent: Agent | null = null;
   searchCIN: string = ''; // Valeur de recherche par numéro de CIN
