@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AgentService } from '../service/agent.service';
-import { Agent } from '../model/agent.model';
+
 import { Router } from "@angular/router";
 import {AdminService} from "../service/admin.service";
+import { Agent } from '../model/agent.model';
 
 @Component({
   selector: 'app-admin',

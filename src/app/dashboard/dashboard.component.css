@@ -1,10 +1,17 @@
 .container {
   padding: 20px;
   font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  border: 1px solid #ffa621;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  max-width: 1200px;
+  margin: 20px auto;
 }
 
 h2 {
   margin-bottom: 20px;
+  color: #333;
 }
 
 .table-controls {
@@ -21,16 +28,17 @@ h2 {
   cursor: pointer;
   border-radius: 5px;
   margin-bottom: 10px;
+  transition: opacity 0.3s ease;
 }
 
 .clients-button {
-  background-color: #4CAF50; /* Green */
-  color: white;
+  background-color: #ffa621; /* Green */
+  color: #000000;
 }
 
 .agents-button {
-  background-color: #2196F3; /* Blue */
-  color: white;
+  background-color: #ffa621; /* Blue */
+  color: #000000;
 }
 
 .add-button:hover {
@@ -41,16 +49,18 @@ h2 {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+  flex-wrap: wrap; /* Permet le retour à la ligne sur les petits écrans */
 }
 
 .chart-container {
   width: 48%;
+  margin-bottom: 20px; /* Espacement entre les graphiques */
 }
 
 .canvas-container canvas {
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgb(18, 121, 87);
   border-radius: 5px;
 }

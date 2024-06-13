@@ -42,8 +42,8 @@ h2 {
 
 /* Form control focus styling */
 .form-control:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+  border-color: #ffa621;
+  box-shadow: 0 0 5px rgb(18, 121, 87);
   outline: none;
 }
 
@@ -52,10 +52,10 @@ h2 {
   display: block;
   width: 100%;
   padding: 10px;
-  background: #007bff;
+  background: #ffa621;
   border: none;
   border-radius: 4px;
-  color: #fff;
+  color: #000000;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
@@ -65,7 +65,7 @@ h2 {
 
 /* Submit button hover effect */
 .btn-primary:hover {
-  background: #0056b3;
+  background: #127957;
 }
 
 /* Add some responsive design */

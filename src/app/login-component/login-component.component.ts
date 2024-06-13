@@ -69,4 +69,7 @@ export class LoginComponentComponent implements OnInit {
       this.errorMessage = 'Veuillez entrer une adresse email et un mot de passe valides.';
     }
   }
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
 }

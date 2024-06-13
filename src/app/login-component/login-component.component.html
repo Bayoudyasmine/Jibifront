@@ -1,6 +1,8 @@
 <div class="container">
+  <button class="close-button" (click)="closeDialog()">X</button>
   <h2>DÉJÀ CLIENT JIBI?</h2>
   <h3>CONNECTEZ-VOUS</h3>
+
   <div class="form-wrapper">
     <div class="form-container">
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">

@@ -58,7 +58,8 @@
 }
 
 .social-links a {
-  margin-top: 8px; /* Espace entre les liens sociaux */
+  margin-top: 8px;
+  margin-right:340px; /* Espace entre les liens sociaux */
 
 }
 
@@ -81,10 +82,11 @@
 .quick-links li a {
   color: #6c757d; /* Couleur du texte des liens rapides */
   transition: color 0.3s; /* Animation de transition de couleur */
+  margin-right: 100px;
 }
 
 .quick-links li a:hover {
-  color: #212529; /* Couleur du texte des liens rapides au survol */
+  color: #ffa621; /* Couleur du texte des liens rapides au survol */
 }
 
 .copyright p {

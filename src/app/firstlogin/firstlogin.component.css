@@ -1,20 +1,23 @@
-/* firstlogin.component.css */
+/* Styles pour le conteneur principal */
 .container {
   max-width: 600px;
   margin: 50px auto;
   padding: 30px;
-  border: 1px solid #ddd;
-  background-color: #f9f9f9;
+  border: 1px solid #127957;
+  background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   font-family: Arial, sans-serif;
-  border-left: 3px solid #333;
+  border-left: 3px solid #ffa621;
+  border-radius: 8px;
 }
 
+/* Styles pour le wrapper du formulaire */
 .form-wrapper {
   background-color: #fff;
   padding: 20px;
 }
 
+/* Styles pour les groupes de formulaire */
 .form-group {
   margin-bottom: 20px;
   border-bottom: 1px solid #ddd;
@@ -24,13 +27,16 @@
   border-bottom: none;
 }
 
+/* Styles pour les étiquettes des champs */
 label {
   display: block;
   margin-bottom: 5px;
-  color: #555;
+  color: #127957;
+  font-weight: bold;
 }
 
-input, select {
+/* Styles pour les champs de formulaire */
+.form-control {
   width: calc(100% - 20px);
   padding: 10px;
   margin-top: 5px;
@@ -38,7 +44,14 @@ input, select {
   border-radius: 4px;
 }
 
-.btn-primary {
+/* Styles pour le bouton */
+.btn-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.btn {
   display: inline-block;
   padding: 10px 20px;
   background-color: #ffcc00;
@@ -48,15 +61,57 @@ input, select {
   font-weight: bold;
   text-align: center;
   cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #127957;
+}
+/* Styles pour les champs de type password */
+input[type="password"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+}
+
+/* Styles pour le bouton Submit */
+.btn-primary {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ffcc00;
+  border: none;
+  border-radius: 5px;
+  color: #333;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
   margin-top: 10px;
 }
 
 .btn-primary:hover {
-  background-color: #ffb700;
+  background-color: #127957;
 }
 
-.btn-container {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
+/* Styles pour les erreurs de validation */
+.error-message {
+  color: #e00a0a;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Media query pour les petits écrans */
+@media (max-width: 600px) {
+  .container {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .form-control {
+    width: 100%;
+  }
+
+  .btn-container {
+    justify-content: center;
+  }
 }
