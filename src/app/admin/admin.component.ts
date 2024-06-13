@@ -3,7 +3,8 @@ import { AgentService } from '../service/agent.service';
 
 import { Router } from "@angular/router";
 import {AdminService} from "../service/admin.service";
-import { Agent } from '../model/agent.model';
+import {Agent} from "../model/Agent.model";
+
 
 @Component({
   selector: 'app-admin',
@@ -11,7 +12,7 @@ import { Agent } from '../model/agent.model';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  agents: Agent[] = [];
+  agents: Aggent[] = [];
   filteredAgents: Agent[] = []; // Agents filtrés par recherche
   selectedAgent: Agent | null = null;
   searchCIN: string = ''; // Valeur de recherche par numéro de CIN

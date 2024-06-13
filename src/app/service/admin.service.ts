@@ -3,8 +3,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Agent } from '../model/agent.model';
+
 import { ClientDTO } from '../model/ClientDTO.model';
+import {Agent} from "../model/Agent.model";
 
 @Injectable({
   providedIn: 'root'

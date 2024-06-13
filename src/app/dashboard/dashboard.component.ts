@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { AdminService } from '../service/admin.service';
-import { Agent } from '../model/agent.model';
+
 import { ClientDTO } from '../model/ClientDTO.model';
 import { AgentService } from "../service/agent.service";
+import {Agent} from "../model/Agent.model";
+
 
 @Component({
   selector: 'app-dashboard',
