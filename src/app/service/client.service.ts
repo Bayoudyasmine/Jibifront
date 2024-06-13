@@ -10,6 +10,6 @@ export class ClientService {
   subscribeClient(formData: FormData): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post<any>("http://localhost:8080/api/clients", formData, { headers });
+    return this.http.post<any>("https://jibi-backend-h27e.onrender.com/api/clients", formData, { headers });
   }
 }

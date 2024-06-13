@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BankAccountService {
-  private apiUrl = 'http://localhost:8080/api/bankaccount'; // Modifiez l'URL si nécessaire
-  private codeApiUrl = 'http://localhost:8080/api/codes'; // URL pour l'envoi de codes
+  private apiUrl = 'https://jibi-backend-h27e.onrender.com/api/bankaccount'; // Modifiez l'URL si nécessaire
+  private codeApiUrl = 'https://jibi-backend-h27e.onrender.com/api/codes'; // URL pour l'envoi de codes
   constructor(private http: HttpClient) {}
   private getAuthHeaders(): HttpHeaders {
 

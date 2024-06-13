@@ -11,7 +11,7 @@ import { ClientDTO } from '../model/ClientDTO.model';
 })
 export class AdminService {
 
-  private apiUrl = 'http://localhost:8080/api/agents'; // URL de l'API Spring Boot
+  private apiUrl = 'https://jibi-backend-h27e.onrender.com/api/agents'; // URL de l'API Spring Boot
 
   constructor(private http: HttpClient) { }
 

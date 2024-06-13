@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PasswordService {
-  private baseUrl = 'http://localhost:8080/password';
+  private baseUrl = 'https://jibi-backend-h27e.onrender.com/password';
 
   constructor(private http: HttpClient) {}
 

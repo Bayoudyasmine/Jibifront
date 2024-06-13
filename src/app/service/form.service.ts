@@ -8,7 +8,7 @@ import {ClientDTO} from "../model/ClientDTO.model";
 })
 export class FormService {
 
-  private baseUrl = 'http://localhost:8080/api/bankaccount';
+  private baseUrl = 'https://jibi-backend-h27e.onrender.com/api/bankaccount';
 
   constructor(private http: HttpClient) { }
 
@@ -20,7 +20,7 @@ export class FormService {
   createInvoice(formData: FormData): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post<any>(`http://localhost:8080/api/invoices`, formData, { headers });
+    return this.http.post<any>(`https://jibi-backend-h27e.onrender.com/api/invoices`, formData, { headers });
   }
 
   confirmPayment(sourceAccountId: number, amount: number): Observable<any> {
@@ -30,14 +30,14 @@ export class FormService {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.post(`http://localhost:8080/api/bankaccount/payment`, formData, {  headers,
+    return this.http.post(`https://jibi-backend-h27e.onrender.com/api/bankaccount/payment`, formData, {  headers,
       responseType: 'text' as 'json' // Force the response to be treated as text
     }); }
 
   getPaymentHistory(clientId: String): Observable<any[]> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<any>(`http://localhost:8080/api/invoices/pending/${clientId}`, { headers });
+    return this.http.get<any>(`https://jibi-backend-h27e.onrender.com/api/invoices/pending/${clientId}`, { headers });
   }
 
 }

@@ -7,7 +7,7 @@ import { map, Observable } from 'rxjs';
 })
 export class LoginService {
 
-  private apiUrl = 'http://localhost:8080/login'; // URL de l'API Spring Boot
+  private apiUrl = 'https://jibi-backend-h27e.onrender.com/login'; // URL de l'API Spring Boot
 
   constructor(private http: HttpClient) { }
 

@@ -8,7 +8,7 @@ import {ClientDTO} from "../model/ClientDTO.model";
 })
 export class AgentService {
 
-  private apiUrl = 'http://localhost:8080/api/clients'; // URL de l'API Spring Boot
+  private apiUrl = 'https://jibi-backend-h27e.onrender.com/api/clients'; // URL de l'API Spring Boot
 
   constructor(private http: HttpClient) { }
 
@@ -21,7 +21,7 @@ export class AgentService {
   subscribeAgent(formData: FormData): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post<any>("http://localhost:8080/api/agents", formData, { headers });
+    return this.http.post<any>("https://jibi-backend-h27e.onrender.com/api/agents", formData, { headers });
   }
 
   deleteClient(id: number): Observable<any> {

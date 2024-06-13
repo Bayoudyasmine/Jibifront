@@ -8,7 +8,7 @@ import {AccountOperationDTO} from "../model/AccountOpertionDTO.model";
 })
 export class AccountOperationService {
 
-  private apiUrl = 'http://localhost:8080/api/bankaccount/operations'; // URL de votre endpoint
+  private apiUrl = 'https://jibi-backend-h27e.onrender.com/api/bankaccount/operations'; // URL de votre endpoint
 
   constructor(private http: HttpClient) { }
 
